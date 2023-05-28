@@ -1,0 +1,18 @@
+defult: &default
+  adapter: redis
+  url: "<%= ENV.fetch('REDIS_APP_URL', 'redis://mymaster/0') %>"
+  sentinels:
+    - host: '127.0.0.1'
+      port: 26379
+
+development:
+  <<: *default
+  channel_prefix: arsb:development
+
+test:
+  <<: *default
+  channel_prefix: arsb:test
+
+production:
+  <<: *default
+  channel_prefix: arsb:production
